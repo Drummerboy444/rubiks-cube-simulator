@@ -11,7 +11,7 @@ public class CubeController : MonoBehaviour
         {
             string label = face.name;
             labelToFaceLookup[label] = face;
-            face.Colour = GetStartingColour(label);
+            face.Colour = ColourLookup.GetStartingColour(label);
         }
     }
 
@@ -35,12 +35,20 @@ public class CubeController : MonoBehaviour
 
     public void Left()
     {
-        
+        CycleColours("L1", "L3", "L9", "L7");
+        CycleColours("L2", "L6", "L8", "L4");
+        CycleColours("U1", "F1", "D1", "B9");
+        CycleColours("U4", "F4", "D4", "B6");
+        CycleColours("U7", "F7", "D7", "B3");
     }
 
     public void Right()
     {
-        
+        CycleColours("R1", "R3", "R9", "R7");
+        CycleColours("R2", "R6", "R8", "R4");
+        CycleColours("U3", "B7", "D3", "F3");
+        CycleColours("U6", "B4", "D6", "F6");
+        CycleColours("U9", "B1", "D9", "F9");
     }
 
     public void Front()
@@ -54,21 +62,11 @@ public class CubeController : MonoBehaviour
 
     public void Back()
     {
-        
-    }
-
-    private Colour GetStartingColour(string label)
-    {
-        return label[0] switch
-        {
-            'U' => Colour.Green,
-            'D' => Colour.Blue,
-            'L' => Colour.Orange,
-            'R' => Colour.Red,
-            'F' => Colour.Yellow,
-            'B' => Colour.White,
-            _ => default
-        };
+        CycleColours("B1", "B3", "B9", "B7");
+        CycleColours("B2", "B6", "B8", "B4");
+        CycleColours("U1", "L7", "D9", "R3");
+        CycleColours("U2", "L4", "D8", "R6");
+        CycleColours("U3", "L1", "D7", "R9");
     }
 
     private void CycleColours(params string[] labels)

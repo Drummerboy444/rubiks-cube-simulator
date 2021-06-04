@@ -11,7 +11,7 @@ public class Face : MonoBehaviour
         set
         {
             colour = value;
-            renderer.material.color = ColourLookup.Get(colour);
+            renderer.material.color = ColourLookup.GetColor(colour);
         }
     }
 }
