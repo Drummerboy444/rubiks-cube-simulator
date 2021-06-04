@@ -24,15 +24,6 @@ public class CubeController : MonoBehaviour
         CycleColours("F3", "L3", "B3", "R3");
     }
 
-    public void Front()
-    {
-        CycleColours("F1", "F3", "F9", "F7");
-        CycleColours("F2", "F6", "F8", "F4");
-        CycleColours("U7", "R1", "D3", "L9");
-        CycleColours("U8", "R4", "D2", "L6");
-        CycleColours("U9", "R7", "D1", "L3");
-    }
-
     public void Down()
     {
         CycleColours("D1", "D3", "D9", "D7");
@@ -52,6 +43,15 @@ public class CubeController : MonoBehaviour
         
     }
 
+    public void Front()
+    {
+        CycleColours("F1", "F3", "F9", "F7");
+        CycleColours("F2", "F6", "F8", "F4");
+        CycleColours("U7", "R1", "D3", "L9");
+        CycleColours("U8", "R4", "D2", "L6");
+        CycleColours("U9", "R7", "D1", "L3");
+    }
+
     public void Back()
     {
         
@@ -62,10 +62,10 @@ public class CubeController : MonoBehaviour
         return label[0] switch
         {
             'U' => Colour.Green,
-            'F' => Colour.Yellow,
             'D' => Colour.Blue,
             'L' => Colour.Orange,
             'R' => Colour.Red,
+            'F' => Colour.Yellow,
             'B' => Colour.White,
             _ => default
         };

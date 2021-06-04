@@ -8,12 +8,12 @@ public static class ColourLookup
     {
         return colour switch
         {
-            Colour.Red => Color.red,
             Colour.Green => Color.green,
             Colour.Blue => Color.blue,
+            Colour.Orange => orange,
+            Colour.Red => Color.red,
             Colour.Yellow => Color.yellow,
             Colour.White => Color.white,
-            Colour.Orange => orange,
             _ => default
         };
     }
