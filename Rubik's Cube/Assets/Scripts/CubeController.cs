@@ -32,7 +32,7 @@ public class CubeController : MonoBehaviour
             'U' => Colour.Green,
             'F' => Colour.Yellow,
             'D' => Colour.Blue,
-            'L' => Colour.Black,
+            'L' => Colour.Orange,
             'R' => Colour.Red,
             'B' => Colour.White,
             _ => default

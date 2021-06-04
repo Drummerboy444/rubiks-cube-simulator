@@ -5,5 +5,5 @@
     Blue,
     Yellow,
     White,
-    Black
+    Orange
 }
