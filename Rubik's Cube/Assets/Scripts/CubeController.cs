@@ -18,6 +18,11 @@ public class CubeController : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.U)) Up();
+        if (Input.GetKeyDown(KeyCode.F)) Front();
+        if (Input.GetKeyDown(KeyCode.D)) Down();
+        if (Input.GetKeyDown(KeyCode.L)) Left();
+        if (Input.GetKeyDown(KeyCode.R)) Right();
+        if (Input.GetKeyDown(KeyCode.B)) Back();
     }
 
     private Colour GetStartingColour(string label)
@@ -41,6 +46,31 @@ public class CubeController : MonoBehaviour
         CycleColours("F1", "L1", "B1", "R1");
         CycleColours("F2", "L2", "B2", "R2");
         CycleColours("F3", "L3", "B3", "R3");
+    }
+
+    private void Front()
+    {
+        
+    }
+
+    private void Down()
+    {
+        
+    }
+
+    private void Left()
+    {
+        
+    }
+
+    private void Right()
+    {
+        
+    }
+
+    private void Back()
+    {
+        
     }
 
     private void CycleColours(params string[] labels)
