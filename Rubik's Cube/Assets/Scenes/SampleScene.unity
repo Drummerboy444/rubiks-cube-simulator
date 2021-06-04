@@ -951,7 +951,7 @@ GameObject:
   - component: {fileID: 383163132}
   - component: {fileID: 383163133}
   m_Layer: 0
-  m_Name: Controllers
+  m_Name: Meta
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -995,7 +995,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b13ead1b98c2484790f3b0c16c56c65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cubeController: {fileID: 383163130}
 --- !u!114 &383163133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1008,7 +1007,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 929c88ffba823c94197e49e0f5db5ac9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cubeController: {fileID: 383163130}
 --- !u!1001 &389951400
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1296,7 +1294,7 @@ GameObject:
   m_Component:
   - component: {fileID: 555834742}
   m_Layer: 0
-  m_Name: Faces
+  m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

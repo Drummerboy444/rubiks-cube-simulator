@@ -2,7 +2,12 @@ using UnityEngine;
 
 public class AlgorithmApplier : MonoBehaviour
 {
-    [SerializeField] private CubeController cubeController = null;
+    private CubeController cubeController;
+
+    private void Start()
+    {
+        cubeController = FindObjectOfType<CubeController>();
+    }
 
     public void Apply(string algorithm)
     {
@@ -15,9 +20,6 @@ public class AlgorithmApplier : MonoBehaviour
                     break;
                 case 2:
                     HandleLength2Token(token);
-                    break;
-                default:
-                    Debug.LogError($"Unable to handle token \"{token}\"");
                     break;
             }
         }
