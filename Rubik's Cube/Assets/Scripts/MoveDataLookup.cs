@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public static class DataLookup
+public static class MoveDataLookup
 {
     private static readonly Dictionary<Move, MoveData> moveDataLookup = new Dictionary<Move, MoveData>
     {
@@ -15,7 +15,7 @@ public static class DataLookup
                 new []{ "F2", "L2", "B2", "R2" },
                 new []{ "F3", "L3", "B3", "R3" },
             },
-            FaceLabels = new []
+            Labels = new []
             {
                 "U1", "U2", "U3", "U4", "U5", "U6", "U7", "U8", "U9",
                 "L1", "L2", "L3",
@@ -28,8 +28,5 @@ public static class DataLookup
         }
     };
 
-    public static string[][] GetCycles(Move move) => moveDataLookup[move].Cycles;
-    public static string[] GetFaceLabels(Move move) => moveDataLookup[move].FaceLabels;
-    public static Vector3 GetRotationAxis(Move move) => moveDataLookup[move].RotationAxis;
-    public static int GetRotationAngle(Move move) => moveDataLookup[move].RotationAngle;
+    public static MoveData Get(Move move) => moveDataLookup[move];
 }

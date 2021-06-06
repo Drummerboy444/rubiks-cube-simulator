@@ -19,9 +19,11 @@ public class CubeController : MonoBehaviour
 
     public void MakeMove(Move move)
     {
-        foreach (string[] cycle in DataLookup.GetCycles(move)) Cycle(cycle);
+        foreach (string[] cycle in MoveDataLookup.Get(move).Cycles) Cycle(cycle);
         MoveSubject.Next(move);
     }
+
+    public Face GetFace(string label) => labelToFaceLookup[label];
 
     private void Up()
     {
