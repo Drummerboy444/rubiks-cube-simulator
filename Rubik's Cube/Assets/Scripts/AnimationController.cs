@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class AnimationController : MonoBehaviour
 {
-    private const float DegreesPerSecond = 90;
+    [SerializeField] private float degreesPerSecond = 0;
     
     private CubeController cubeController;
 
@@ -42,7 +42,7 @@ public class AnimationController : MonoBehaviour
                 moveData.RotationAxis,
                 1
             );
-            yield return new WaitForSeconds(1 / DegreesPerSecond);
+            yield return new WaitForSeconds(1 / degreesPerSecond);
             angle--;
         }
     }
