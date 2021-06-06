@@ -30,22 +30,22 @@ public class AlgorithmApplier : MonoBehaviour
         switch (token[0])
         {
             case 'U':
-                cubeController.Move(Move.Up);
+                cubeController.MakeMove(Move.Up);
                 break;
             case 'D':
-                cubeController.Move(Move.Down);
+                cubeController.MakeMove(Move.Down);
                 break;
             case 'L':
-                cubeController.Move(Move.Left);
+                cubeController.MakeMove(Move.Left);
                 break;
             case 'R':
-                cubeController.Move(Move.Right);
+                cubeController.MakeMove(Move.Right);
                 break;
             case 'F':
-                cubeController.Move(Move.Front);
+                cubeController.MakeMove(Move.Front);
                 break;
             case 'B':
-                cubeController.Move(Move.Back);
+                cubeController.MakeMove(Move.Back);
                 break;
         }
     }
@@ -67,22 +67,22 @@ public class AlgorithmApplier : MonoBehaviour
         switch (token[0])
         {
             case 'U':
-                cubeController.Move(Move.UpInverted);
+                cubeController.MakeMove(Move.UpInverted);
                 break;
             case 'D':
-                cubeController.Move(Move.DownInverted);
+                cubeController.MakeMove(Move.DownInverted);
                 break;
             case 'L':
-                cubeController.Move(Move.LeftInverted);
+                cubeController.MakeMove(Move.LeftInverted);
                 break;
             case 'R':
-                cubeController.Move(Move.RightInverted);
+                cubeController.MakeMove(Move.RightInverted);
                 break;
             case 'F':
-                cubeController.Move(Move.FrontInverted);
+                cubeController.MakeMove(Move.FrontInverted);
                 break;
             case 'B':
-                cubeController.Move(Move.BackInverted);
+                cubeController.MakeMove(Move.BackInverted);
                 break;
         }
     }
@@ -94,22 +94,22 @@ public class AlgorithmApplier : MonoBehaviour
         switch (token[0])
         {
             case 'U':
-                Utils.Repeat(times, () => cubeController.Move(Move.Up));
+                cubeController.MakeMove(Move.Up2);
                 break;
             case 'D':
-                Utils.Repeat(times, () => cubeController.Move(Move.Down));
+                cubeController.MakeMove(Move.Down2);
                 break;
             case 'L':
-                Utils.Repeat(times, () => cubeController.Move(Move.Left));
+                cubeController.MakeMove(Move.Left2);
                 break;
             case 'R':
-                Utils.Repeat(times, () => cubeController.Move(Move.Right));
+                cubeController.MakeMove(Move.Right2);
                 break;
             case 'F':
-                Utils.Repeat(times, () => cubeController.Move(Move.Front));
+                cubeController.MakeMove(Move.Front2);
                 break;
             case 'B':
-                Utils.Repeat(times, () => cubeController.Move(Move.Back));
+                cubeController.MakeMove(Move.Back2);
                 break;
         }
     }

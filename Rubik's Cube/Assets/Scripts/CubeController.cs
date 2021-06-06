@@ -1,10 +1,8 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CubeController : MonoBehaviour
 {
-    private Dictionary<Move, Action> moveLookup;
     private readonly Dictionary<string, Face> labelToFaceLookup = new Dictionary<string, Face>();
 
     public Subject<Move> MoveSubject { get; } = new Subject<Move>();
@@ -17,115 +15,69 @@ public class CubeController : MonoBehaviour
             labelToFaceLookup[label] = face;
             face.Colour = ColourLookup.GetStartingColour(label);
         }
-        
-        moveLookup = new Dictionary<Move, Action>
-        {
-            [global::Move.Up] = Up,
-            [global::Move.UpInverted] = UpInverted,
-            [global::Move.Down] = Down,
-            [global::Move.DownInverted] = DownInverted,
-            [global::Move.Left] = Left,
-            [global::Move.LeftInverted] = LeftInverted,
-            [global::Move.Right] = Right,
-            [global::Move.RightInverted] = RightInverted,
-            [global::Move.Front] = Front,
-            [global::Move.FrontInverted] = FrontInverted,
-            [global::Move.Back] = Back,
-            [global::Move.BackInverted] = BackInverted,
-        };
     }
 
-    public void Move(Move move)
+    public void MakeMove(Move move)
     {
-        moveLookup[move]();
+        foreach (string[] cycle in DataLookup.GetCycles(move)) Cycle(cycle);
         MoveSubject.Next(move);
     }
 
     private void Up()
     {
-        CycleColours("U1", "U3", "U9", "U7");
-        CycleColours("U2", "U6", "U8", "U4");
-        CycleColours("F1", "L1", "B1", "R1");
-        CycleColours("F2", "L2", "B2", "R2");
-        CycleColours("F3", "L3", "B3", "R3");
-    }
-
-    private void UpInverted()
-    {
-        Utils.Repeat(3, Up);
+        Cycle("U1", "U3", "U9", "U7");
+        Cycle("U2", "U6", "U8", "U4");
+        Cycle("F1", "L1", "B1", "R1");
+        Cycle("F2", "L2", "B2", "R2");
+        Cycle("F3", "L3", "B3", "R3");
     }
 
     private void Down()
     {
-        CycleColours("D1", "D3", "D9", "D7");
-        CycleColours("D2", "D6", "D8", "D4");
-        CycleColours("F7", "R7", "B7", "L7");
-        CycleColours("F8", "R8", "B8", "L8");
-        CycleColours("F9", "R9", "B9", "L9");
-    }
-
-    private void DownInverted()
-    {
-        Utils.Repeat(3, Down);
+        Cycle("D1", "D3", "D9", "D7");
+        Cycle("D2", "D6", "D8", "D4");
+        Cycle("F7", "R7", "B7", "L7");
+        Cycle("F8", "R8", "B8", "L8");
+        Cycle("F9", "R9", "B9", "L9");
     }
 
     private void Left()
     {
-        CycleColours("L1", "L3", "L9", "L7");
-        CycleColours("L2", "L6", "L8", "L4");
-        CycleColours("U1", "F1", "D1", "B9");
-        CycleColours("U4", "F4", "D4", "B6");
-        CycleColours("U7", "F7", "D7", "B3");
-    }
-
-    private void LeftInverted()
-    {
-        Utils.Repeat(3, Left);
+        Cycle("L1", "L3", "L9", "L7");
+        Cycle("L2", "L6", "L8", "L4");
+        Cycle("U1", "F1", "D1", "B9");
+        Cycle("U4", "F4", "D4", "B6");
+        Cycle("U7", "F7", "D7", "B3");
     }
 
     private void Right()
     {
-        CycleColours("R1", "R3", "R9", "R7");
-        CycleColours("R2", "R6", "R8", "R4");
-        CycleColours("U3", "B7", "D3", "F3");
-        CycleColours("U6", "B4", "D6", "F6");
-        CycleColours("U9", "B1", "D9", "F9");
-    }
-
-    private void RightInverted()
-    {
-        Utils.Repeat(3, Right);
+        Cycle("R1", "R3", "R9", "R7");
+        Cycle("R2", "R6", "R8", "R4");
+        Cycle("U3", "B7", "D3", "F3");
+        Cycle("U6", "B4", "D6", "F6");
+        Cycle("U9", "B1", "D9", "F9");
     }
 
     private void Front()
     {
-        CycleColours("F1", "F3", "F9", "F7");
-        CycleColours("F2", "F6", "F8", "F4");
-        CycleColours("U7", "R1", "D3", "L9");
-        CycleColours("U8", "R4", "D2", "L6");
-        CycleColours("U9", "R7", "D1", "L3");
-    }
-
-    private void FrontInverted()
-    {
-        Utils.Repeat(3, Front);
+        Cycle("F1", "F3", "F9", "F7");
+        Cycle("F2", "F6", "F8", "F4");
+        Cycle("U7", "R1", "D3", "L9");
+        Cycle("U8", "R4", "D2", "L6");
+        Cycle("U9", "R7", "D1", "L3");
     }
 
     private void Back()
     {
-        CycleColours("B1", "B3", "B9", "B7");
-        CycleColours("B2", "B6", "B8", "B4");
-        CycleColours("U1", "L7", "D9", "R3");
-        CycleColours("U2", "L4", "D8", "R6");
-        CycleColours("U3", "L1", "D7", "R9");
+        Cycle("B1", "B3", "B9", "B7");
+        Cycle("B2", "B6", "B8", "B4");
+        Cycle("U1", "L7", "D9", "R3");
+        Cycle("U2", "L4", "D8", "R6");
+        Cycle("U3", "L1", "D7", "R9");
     }
 
-    private void BackInverted()
-    {
-        Utils.Repeat(3, Back);
-    }
-
-    private void CycleColours(params string[] labels)
+    private void Cycle(params string[] labels)
     {
         Dictionary<Face, Colour> faceToNewColourLookup = new Dictionary<Face, Colour>();
 
