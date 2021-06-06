@@ -7,6 +7,7 @@ public static class MoveDataLookup
     {
         [Move.Up] = new MoveData
         {
+            AlgorithmNotation = "U",
             Cycles = new []
             {
                 new []{ "U1", "U3", "U9", "U7" },
@@ -28,6 +29,7 @@ public static class MoveDataLookup
         },
         [Move.Down] = new MoveData
         {
+            AlgorithmNotation = "D",
             Cycles = new []
             {
                 new []{ "D1", "D3", "D9", "D7" },
@@ -49,6 +51,7 @@ public static class MoveDataLookup
         },
         [Move.Left] = new MoveData
         {
+            AlgorithmNotation = "L",
             Cycles = new []
             {
                 new []{ "L1", "L3", "L9", "L7" },
@@ -70,6 +73,7 @@ public static class MoveDataLookup
         },
         [Move.Right] = new MoveData
         {
+            AlgorithmNotation = "R",
             Cycles = new []
             {
                 new []{ "R1", "R3", "R9", "R7" },
@@ -91,6 +95,7 @@ public static class MoveDataLookup
         },
         [Move.Front] = new MoveData
         {
+            AlgorithmNotation = "F",
             Cycles = new []
             {
                 new []{ "F1", "F3", "F9", "F7" },
@@ -112,6 +117,7 @@ public static class MoveDataLookup
         },
         [Move.Back] = new MoveData
         {
+            AlgorithmNotation = "B",
             Cycles = new []
             {
                 new []{ "B1", "B3", "B9", "B7" },
