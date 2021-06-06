@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class AlgorithmApplier : MonoBehaviour
 {
-    private CubeController cubeController;
+    [SerializeField] private CubeController cubeController;
 
     private readonly Dictionary<string, Move> algorithmNotationToMoveLookup = new Dictionary<string, Move>();
 
     private void Start()
     {
-        cubeController = FindObjectOfType<CubeController>();
-
         foreach (Move move in Enum.GetValues(typeof(Move)))
         {
             algorithmNotationToMoveLookup[MoveDataLookup.Get(move).AlgorithmNotation] = move;

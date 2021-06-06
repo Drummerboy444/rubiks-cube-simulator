@@ -2,12 +2,7 @@ using UnityEngine;
 
 public class InputController : MonoBehaviour
 {
-    private CubeController cubeController;
-
-    private void Start()
-    {
-        cubeController = FindObjectOfType<CubeController>();
-    }
+    [SerializeField] private CubeController cubeController;
     
     private void Update()
     {

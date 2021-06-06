@@ -1,21 +1,9 @@
 ﻿public enum Move
 {
     Up,
-    UpInverted,
-    Up2,
     Down,
-    DownInverted,
-    Down2,
     Left,
-    LeftInverted,
-    Left2,
     Right,
-    RightInverted,
-    Right2,
     Front,
-    FrontInverted,
-    Front2,
     Back,
-    BackInverted,
-    Back2,
 }

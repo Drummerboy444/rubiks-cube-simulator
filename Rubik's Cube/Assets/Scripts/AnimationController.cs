@@ -3,14 +3,11 @@ using UnityEngine;
 
 public class AnimationController : MonoBehaviour
 {
+    [SerializeField] private CubeController cubeController;
     [SerializeField] private float degreesPerSecond = 0;
-    
-    private CubeController cubeController;
 
     private void Start()
     {
-        cubeController = FindObjectOfType<CubeController>();
-
         cubeController.MoveSubject.Subscribe(HandleAnimation);
     }
 
