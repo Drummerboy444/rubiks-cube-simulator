@@ -1,14 +1,26 @@
-using System.Collections;
 using UnityEngine;
 
 public class AnimationController : MonoBehaviour
 {
     [SerializeField] private CubeController cubeController;
-    [SerializeField] private float degreesPerSecond = 0;
+    [SerializeField] private int degreesPerUpdate = 0;
+
+    private Move currentMove = default;
+    private int remainingDegrees = 0;
+
+    private bool Animating => remainingDegrees > 0;
 
     private void Start()
     {
         cubeController.MoveSubject.Subscribe(HandleAnimation);
+    }
+
+    private void Update()
+    {
+        if (!Animating) return;
+
+        RotateFaces(currentMove, degreesPerUpdate);
+        remainingDegrees -= degreesPerUpdate;
     }
 
     private void HandleAnimation(Move move)
@@ -17,6 +29,8 @@ public class AnimationController : MonoBehaviour
         
         foreach (string label in moveData.Labels)
         {
+            if (Animating) CancelCurrentAnimation();
+            
             Face face = cubeController.GetFace(label);
             face.transform.RotateAround(
                 Vector3.zero,
@@ -24,23 +38,27 @@ public class AnimationController : MonoBehaviour
                 -moveData.RotationAngle
             );
 
-            StartCoroutine(Animate(face, moveData));
+            currentMove = move;
+            remainingDegrees = moveData.RotationAngle;
         }
     }
 
-    private IEnumerator Animate(Face face, MoveData moveData)
+    private void CancelCurrentAnimation()
     {
-        int angle = moveData.RotationAngle;
+        RotateFaces(currentMove, remainingDegrees);
+    }
 
-        while (angle > 0)
+    private void RotateFaces(Move move, int angle)
+    {
+        MoveData moveData = MoveDataLookup.Get(move);
+        
+        foreach (string label in moveData.Labels)
         {
-            face.transform.RotateAround(
+            cubeController.GetFace(label).transform.RotateAround(
                 Vector3.zero,
                 moveData.RotationAxis,
-                1
+                angle
             );
-            yield return new WaitForSeconds(1 / degreesPerSecond);
-            angle--;
         }
     }
 }

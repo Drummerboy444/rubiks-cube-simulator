@@ -1023,7 +1023,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cubeController: {fileID: 383163130}
-  degreesPerSecond: 360
+  degreesPerUpdate: 2
 --- !u!1001 &389951400
 PrefabInstance:
   m_ObjectHideFlags: 0
