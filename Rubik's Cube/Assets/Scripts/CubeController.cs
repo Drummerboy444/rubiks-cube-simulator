@@ -1,9 +1,13 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CubeController : MonoBehaviour
 {
+    private Dictionary<Move, Action> moveLookup;
     private readonly Dictionary<string, Face> labelToFaceLookup = new Dictionary<string, Face>();
+
+    public Subject<Move> MoveSubject { get; } = new Subject<Move>();
 
     private void Start()
     {
@@ -13,9 +17,31 @@ public class CubeController : MonoBehaviour
             labelToFaceLookup[label] = face;
             face.Colour = ColourLookup.GetStartingColour(label);
         }
+        
+        moveLookup = new Dictionary<Move, Action>
+        {
+            [global::Move.Up] = Up,
+            [global::Move.UpInverted] = UpInverted,
+            [global::Move.Down] = Down,
+            [global::Move.DownInverted] = DownInverted,
+            [global::Move.Left] = Left,
+            [global::Move.LeftInverted] = LeftInverted,
+            [global::Move.Right] = Right,
+            [global::Move.RightInverted] = RightInverted,
+            [global::Move.Front] = Front,
+            [global::Move.FrontInverted] = FrontInverted,
+            [global::Move.Back] = Back,
+            [global::Move.BackInverted] = BackInverted,
+        };
     }
 
-    public void Up()
+    public void Move(Move move)
+    {
+        moveLookup[move]();
+        MoveSubject.Next(move);
+    }
+
+    private void Up()
     {
         CycleColours("U1", "U3", "U9", "U7");
         CycleColours("U2", "U6", "U8", "U4");
@@ -24,12 +50,12 @@ public class CubeController : MonoBehaviour
         CycleColours("F3", "L3", "B3", "R3");
     }
 
-    public void UpInverted()
+    private void UpInverted()
     {
         Utils.Repeat(3, Up);
     }
 
-    public void Down()
+    private void Down()
     {
         CycleColours("D1", "D3", "D9", "D7");
         CycleColours("D2", "D6", "D8", "D4");
@@ -38,12 +64,12 @@ public class CubeController : MonoBehaviour
         CycleColours("F9", "R9", "B9", "L9");
     }
 
-    public void DownInverted()
+    private void DownInverted()
     {
         Utils.Repeat(3, Down);
     }
 
-    public void Left()
+    private void Left()
     {
         CycleColours("L1", "L3", "L9", "L7");
         CycleColours("L2", "L6", "L8", "L4");
@@ -52,12 +78,12 @@ public class CubeController : MonoBehaviour
         CycleColours("U7", "F7", "D7", "B3");
     }
 
-    public void LeftInverted()
+    private void LeftInverted()
     {
         Utils.Repeat(3, Left);
     }
 
-    public void Right()
+    private void Right()
     {
         CycleColours("R1", "R3", "R9", "R7");
         CycleColours("R2", "R6", "R8", "R4");
@@ -66,12 +92,12 @@ public class CubeController : MonoBehaviour
         CycleColours("U9", "B1", "D9", "F9");
     }
 
-    public void RightInverted()
+    private void RightInverted()
     {
         Utils.Repeat(3, Right);
     }
 
-    public void Front()
+    private void Front()
     {
         CycleColours("F1", "F3", "F9", "F7");
         CycleColours("F2", "F6", "F8", "F4");
@@ -80,12 +106,12 @@ public class CubeController : MonoBehaviour
         CycleColours("U9", "R7", "D1", "L3");
     }
 
-    public void FrontInverted()
+    private void FrontInverted()
     {
         Utils.Repeat(3, Front);
     }
 
-    public void Back()
+    private void Back()
     {
         CycleColours("B1", "B3", "B9", "B7");
         CycleColours("B2", "B6", "B8", "B4");
@@ -94,7 +120,7 @@ public class CubeController : MonoBehaviour
         CycleColours("U3", "L1", "D7", "R9");
     }
 
-    public void BackInverted()
+    private void BackInverted()
     {
         Utils.Repeat(3, Back);
     }

@@ -30,22 +30,22 @@ public class AlgorithmApplier : MonoBehaviour
         switch (token[0])
         {
             case 'U':
-                cubeController.Up();
+                cubeController.Move(Move.Up);
                 break;
             case 'D':
-                cubeController.Down();
+                cubeController.Move(Move.Down);
                 break;
             case 'L':
-                cubeController.Left();
+                cubeController.Move(Move.Left);
                 break;
             case 'R':
-                cubeController.Right();
+                cubeController.Move(Move.Right);
                 break;
             case 'F':
-                cubeController.Front();
+                cubeController.Move(Move.Front);
                 break;
             case 'B':
-                cubeController.Back();
+                cubeController.Move(Move.Back);
                 break;
         }
     }
@@ -67,22 +67,22 @@ public class AlgorithmApplier : MonoBehaviour
         switch (token[0])
         {
             case 'U':
-                cubeController.UpInverted();
+                cubeController.Move(Move.UpInverted);
                 break;
             case 'D':
-                cubeController.DownInverted();
+                cubeController.Move(Move.DownInverted);
                 break;
             case 'L':
-                cubeController.LeftInverted();
+                cubeController.Move(Move.LeftInverted);
                 break;
             case 'R':
-                cubeController.RightInverted();
+                cubeController.Move(Move.RightInverted);
                 break;
             case 'F':
-                cubeController.FrontInverted();
+                cubeController.Move(Move.FrontInverted);
                 break;
             case 'B':
-                cubeController.BackInverted();
+                cubeController.Move(Move.BackInverted);
                 break;
         }
     }
@@ -94,22 +94,22 @@ public class AlgorithmApplier : MonoBehaviour
         switch (token[0])
         {
             case 'U':
-                Utils.Repeat(times, () => cubeController.Up());
+                Utils.Repeat(times, () => cubeController.Move(Move.Up));
                 break;
             case 'D':
-                Utils.Repeat(times, () => cubeController.Down());
+                Utils.Repeat(times, () => cubeController.Move(Move.Down));
                 break;
             case 'L':
-                Utils.Repeat(times, () => cubeController.Left());
+                Utils.Repeat(times, () => cubeController.Move(Move.Left));
                 break;
             case 'R':
-                Utils.Repeat(times, () => cubeController.Right());
+                Utils.Repeat(times, () => cubeController.Move(Move.Right));
                 break;
             case 'F':
-                Utils.Repeat(times, () => cubeController.Front());
+                Utils.Repeat(times, () => cubeController.Move(Move.Front));
                 break;
             case 'B':
-                Utils.Repeat(times, () => cubeController.Back());
+                Utils.Repeat(times, () => cubeController.Move(Move.Back));
                 break;
         }
     }
